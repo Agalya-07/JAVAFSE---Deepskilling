@@ -1,0 +1,50 @@
+public class CommandPatternExample {
+    interface Command {
+        void execute();
+    }
+    static class Light {
+        void on() {
+            System.out.println("Light ON");
+        }
+        void off() {
+            System.out.println("Light OFF");
+        }
+    }
+    static class LightOnCommand
+            implements Command {
+        private Light light;
+        LightOnCommand(Light light) {
+            this.light = light;
+        }
+        public void execute() {
+            light.on();
+        }
+    }
+    static class LightOffCommand
+            implements Command {
+        private Light light;
+        LightOffCommand(Light light) {
+            this.light = light;
+        }
+        public void execute() {
+            light.off();
+        }
+    }
+    static class RemoteControl {
+        private Command command;
+        void setCommand(Command command) {
+            this.command = command;
+        }
+        void pressButton() {
+            command.execute();
+        }
+    }
+    public static void main(String[] args) {
+        Light light = new Light();
+        RemoteControl remote = new RemoteControl();
+        remote.setCommand(new LightOnCommand(light));
+        remote.pressButton();
+        remote.setCommand(new LightOffCommand(light));
+        remote.pressButton();
+    }
+}
