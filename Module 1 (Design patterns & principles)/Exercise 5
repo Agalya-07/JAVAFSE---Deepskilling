@@ -1,0 +1,38 @@
+public class DecoratorPatternExample {
+    interface Notifier {
+        void send();
+    }
+    static class EmailNotifier implements Notifier {
+
+        public void send() {
+            System.out.println("Email Notification Sent");
+        }
+    }
+    static abstract class NotifierDecorator
+            implements Notifier {
+        protected Notifier notifier;
+        NotifierDecorator(Notifier notifier) {
+            this.notifier = notifier;
+        }
+        public void send() {
+            notifier.send();
+        }
+    }
+    static class SMSNotifierDecorator
+            extends NotifierDecorator {
+        SMSNotifierDecorator(Notifier notifier) {
+            super(notifier);
+        }
+        public void send() {
+            super.send();
+            System.out.println("SMS Notification Sent");
+        }
+    }
+    public static void main(String[] args) {
+
+        Notifier notifier =
+                new SMSNotifierDecorator(
+                        new EmailNotifier());
+        notifier.send();
+    }
+}
