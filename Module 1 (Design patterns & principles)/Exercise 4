@@ -1,0 +1,26 @@
+public class AdapterPatternExample {
+    interface PaymentProcessor {
+        void processPayment(double amount);
+    }
+    static class PayPalGateway {
+        void makePayment(double amount) {
+            System.out.println("PayPal Payment : " + amount);
+        }
+    }
+    static class PayPalAdapter implements PaymentProcessor {
+        private PayPalGateway gateway;
+
+        PayPalAdapter(PayPalGateway gateway) {
+            this.gateway = gateway;
+        }
+        public void processPayment(double amount) {
+            gateway.makePayment(amount);
+        }
+    }
+    public static void main(String[] args) {
+        PaymentProcessor processor =
+                new PayPalAdapter(new PayPalGateway());
+
+        processor.processPayment(1000);
+    }
+}
