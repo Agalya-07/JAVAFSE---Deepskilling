@@ -1,0 +1,55 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: microservice-demo
+
+  cloud:
+    gateway:
+      routes:
+
+        - id: customer-service
+          uri: http://localhost:8080
+          predicates:
+            - Path=/customer/**
+          filters:
+            - RewritePath=/customer/(?<segment>.*), /${segment}
+
+        - id: billing-service
+          uri: http://localhost:8080
+          predicates:
+            - Path=/billing/**
+          filters:
+            - RewritePath=/billing/(?<segment>.*), /${segment}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      paymentService:
+        slidingWindowSize: 5
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10s
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+logging:
+  level:
+    io.github.resilience4j: DEBUG
+	spring:
+	  cloud:
+	    gateway:
+	      routes:
+	        - id: payment-service
+	          uri: http://localhost:8080
+	          predicates:
+	            - Path=/pay
