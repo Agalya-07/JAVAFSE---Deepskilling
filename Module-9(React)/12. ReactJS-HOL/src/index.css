@@ -1,0 +1,20 @@
+body {
+  font-family: Arial;
+  margin: 20px;
+}
+
+button {
+  padding: 8px 15px;
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+table {
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th,
+td {
+  padding: 10px;
+}
