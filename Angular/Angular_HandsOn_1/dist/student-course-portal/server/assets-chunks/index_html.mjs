@@ -1,0 +1,12 @@
+export default `<!DOCTYPE html><html lang="en" data-beasties-container><head>
+  <meta charset="utf-8">
+  <title>StudentCoursePortal</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="stylesheet" href="styles-5INURTSO.css"></head>
+<body><!--nghm-->
+  <app-root ng-version="21.2.18" ngh="1" ng-server-context="ssg"><app-header ngh="0"><nav><h2>Student Course Portal</h2><a href="#">Home</a> | <a href="#">Courses</a> | <a href="#">Profile</a></nav><hr></app-header><app-home ngh="0"><h1>Welcome to Student Course Portal</h1><p>This portal helps students manage courses and profiles.</p><p>Courses Available: 12</p><p>Enrolled: 3</p><p>GPA: 3.8</p></app-home><router-outlet></router-outlet><!----></app-root>
+<script src="main-GGWUU5SQ.js" type="module"></script>
+
+<script id="ng-state" type="application/json">{"__nghData__":[{},{"c":{"2":[]}}]}</script></body></html>`;
